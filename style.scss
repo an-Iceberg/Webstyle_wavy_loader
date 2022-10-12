@@ -1,0 +1,52 @@
+*, *::after, *::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font: 1rem "Veranda", sans-serif;
+}
+
+@mixin flex($direction: column, $justify: center, $align: center, $gap: 30px, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+  flex-wrap: $wrap;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  @include flex();
+  background-color: rgb(0%, 5%, 5%);
+  background-color: black;
+
+  .loader {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    rotate: 175deg;
+    overflow: hidden;
+
+    span {
+      position: absolute;
+      inset: calc(12px * var(--i));
+      border-radius: 50%;
+      border: 10px solid rgb(4%,4%,4%);
+      border-top: 10px solid rgb(0%, 100%, 0%);
+      border-left: 10px solid rgb(0%, 100%, 0%);
+      animation: loader-circle 1s calc(-0.1s * var(--i)) alternate ease-in-out infinite;
+      filter: hue-rotate(calc(60deg * var(--i)));
+
+      @keyframes loader-circle {
+        from {
+          rotate: 0deg;
+        }
+        to {
+          rotate: 90deg;
+        }
+      }
+    }
+  }
+}
